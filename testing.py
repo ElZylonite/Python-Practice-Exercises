@@ -1,10 +1,7 @@
-students = {
-    "Ana": [85, 90, 78],
-    "Luis": [60, 70, 65],
-    "Marta": [95, 88, 92]
-}
+def count_words(text):
+    words_count = {}
+    for words in text.split():
+        words_count[words] = words_count.get(words, 0) + 1
+    return words_count
 
-
-for student, grades in students.items():
-    average = sum(grades)/len(grades)
-    print(student, float(average))
+print(count_words("the sun was setting over the quiet town and the birds were singing softly in the trees the wind moved through the leaves and the river flowed calmly past the old bridge the town felt peaceful as the sun continued to set"))

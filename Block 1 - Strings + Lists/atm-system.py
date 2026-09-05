@@ -20,11 +20,15 @@ while True:
 
     elif action == 3:
         withdraw_amount = int(input("How much money would you like to withdraw? "))
-        if withdraw_amount < balance:
+        if withdraw_amount < 0:
+            print("You can't withdraw negative numbers")
+        elif withdraw_amount > balance:
+            print("Insufficient funds")
+        else:
             balance -= withdraw_amount
             print(f"Balance: {balance}")
-        elif withdraw_amount < 0:
-            print("You can't deposit negative numbers")
+
+        
 
     elif action == 4:
         print("You exited the ATM")
