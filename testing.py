@@ -1,7 +1,45 @@
-def count_words(text):
-    words_count = {}
-    for words in text.split():
-        words_count[words] = words_count.get(words, 0) + 1
-    return words_count
+def validate_password(password):
+    """
+    Validate the strength of a password.
 
-print(count_words("the sun was setting over the quiet town and the birds were singing softly in the trees the wind moved through the leaves and the river flowed calmly past the old bridge the town felt peaceful as the sun continued to set"))
+    A strong password should:
+    - Be at least 8 characters long
+    - Contain both uppercase and lowercase letters
+    - Include at least one numerical digit
+    - Have at least one special character (e.g., !, @, #, $)
+    """
+    requirements = {
+        "Minimum Length": False,
+        "Uppercase Letters": False,
+        "Lowercase Letters": False,
+        "Numerical Digits": False,
+        "Special Characters": False
+    }
+    valid = False
+    errors = []
+
+    if len(password) >= 8:
+        requirements["Minimum Length"] = True
+        for i in password:
+            if i.isupper():
+                requirements["Uppercase Letters"] = True
+            if i.islower():
+                requirements["Lowercase Letters"] = True
+            if i.isdigit():
+                requirements["Numerical Digits"] = True
+            if not i.isalpha() and not i.isdigit():
+                requirements["Special Characters"] = True
+    
+    if all(requirements.values()):
+        valid = True
+        
+    elif not valid:
+        for i in requirements:
+            if requirements[i] == False:
+                errors.append(f"- {i} ❌")
+    return valid, errors
+
+
+print(validate_password("Ab2!"))          
+
+    
