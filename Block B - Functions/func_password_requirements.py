@@ -28,18 +28,27 @@ def has_special_char(password):
             return True
     return False
 
+def is_valid(password):
+    return (is_long(password) and has_uppercase(password) and has_lowercase(password) and has_digit(password) and has_special_char(password))
+
 while True:
     password = input("Enter your password: ")
-    if is_long(password) and has_uppercase(password) and has_lowercase(password) and has_digit(password) and has_special_char(password):
+    long_enough = is_long(password)
+    uppercase = has_uppercase(password)
+    lowercase = has_lowercase(password)
+    digit = has_digit(password)
+    special = has_special_char(password)
+
+    if long_enough and uppercase and lowercase and digit and special:
         print("Password is valid.")
         break
-    elif not is_long(password):
+    elif not long_enough:
         print("Password must be at least 8 characters long.")
-    elif not has_uppercase(password):
+    elif not uppercase:
         print("Password must contain at least one uppercase letter.")
-    elif not has_lowercase(password):
-        print("Password must contain at least one lowercase letter.")
-    elif not has_digit(password):
+    elif not lowercase:
+        print("Password must contain at least one lowercase letter.") 
+    elif not digit:
         print("Password must contain at least one digit.")
-    elif not has_special_char(password):
+    elif not special:
         print("Password must contain at least one special character.")
